@@ -1,0 +1,17 @@
+{
+  "name": "a-ponte",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "mcp": "node servidor-mcp/server.mjs",
+    "a2a": "node agente/server.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/server": "2.4.0",
+    "@modelcontextprotocol/node": "2.1.2",
+    "zod": "4.6.7"
+  }
+}
