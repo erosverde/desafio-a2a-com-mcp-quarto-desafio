@@ -85,3 +85,7 @@ PASS 36 o agente e deterministico: o mesmo pedido produz a mesma pausa
 
 resumo: 36 passaram, 0 falharam, de 36 verificacoes
 ```
+
+Execute `npm run validar:extras` para conferir a rejeição de headers MCP divergentes, a retomada após reiniciar o MCP com a mesma chave, o trace da Task e a troca de id JSON-RPC no retry. O comando inicia e encerra os dois processos em portas locais temporárias e gera uma chave exclusiva para a execução.
+
+A cobertura segue o [roteiro de validação do Thiago Duarte](https://github.com/th1agoduarte/desafio-a2a-com-mcp/blob/3dfc5f9/VALIDACAO.md).

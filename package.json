@@ -7,7 +7,8 @@
   },
   "scripts": {
     "mcp": "node servidor-mcp/server.mjs",
-    "a2a": "node agente/server.mjs"
+    "a2a": "node agente/server.mjs",
+    "validar:extras": "node scripts/validar-extras.mjs"
   },
   "dependencies": {
     "@modelcontextprotocol/server": "2.4.0",
