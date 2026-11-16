@@ -36,13 +36,13 @@ Em [agente/server.mjs](agente/server.mjs), `aplicarResultado` recebe o `input_re
 
 - O servidor usa o SDK oficial MCP v2 com Streamable HTTP stateless. O codec do SDK assina o pedido original e as alternativas com HMAC-SHA256 e expiração de 10 minutos. O retry usa os argumentos assinados e verifica se a alternativa continua livre. O token continua válido após reinício com a mesma chave.
 - O agente mantém as Tasks e o estado das pausas em memória. O MCP mantém as reservas em memória e carrega os dados iniciais a cada subida. Os dois processos executam regras determinísticas.
+- O agente usa o cliente oficial MCP v2 com a revisão 2026-07-28 fixada. A resposta de elicitation automática fica desativada para que o A2A possa pausar a Task.
 - O agente descobre a ferramenta por `tools/list` e lê a versão da política em `politica://uso`. O servidor registra método, id e `traceparent` no stderr. A mesma Task mantém o contexto de trace na descoberta, na chamada inicial e na retomada.
 
 ## Saída do validador
 
 ```text
-
-trace-id desta execucao: fcabcc6157d9359d1007aced537ba48d
+trace-id desta execucao: dd61f793f95a0cf70a4b5b53ae9a40e4
 procure esse valor no stderr do servidor MCP para conferir a propagacao do traceparent.
 
 PASS 01 tools/list traz as tres tools
