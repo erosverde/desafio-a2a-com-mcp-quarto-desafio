@@ -142,4 +142,3 @@ createServer((req, res) => {
     if (req.url === '/mcp') return nodeHandler(req, res);
     res.writeHead(404).end();
 }).listen(Number(process.env.MCP_PORT ?? 7301), '127.0.0.1');
-

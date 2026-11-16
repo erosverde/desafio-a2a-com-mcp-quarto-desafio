@@ -81,7 +81,7 @@ async function sendMessage(message, traceparent) {
         if (!record) throw new RpcError(-32001, 'Task inexistente');
         const { task, pause } = record;
         if (!pause || task.status.state !== 'TASK_STATE_INPUT_REQUIRED') {
-            throw new RpcError(-32002, 'Task indisponivel para continuacao');
+            throw new RpcError(-32004, 'Task indisponivel para continuacao');
         }
         if (message.contextId && message.contextId !== task.contextId) {
             throw new RpcError(-32602, 'contextId invalido');
@@ -153,6 +153,13 @@ createServer(async (req, res) => {
             case 'GetTask':
                 task = tasks.get(body.params?.id)?.task;
                 if (!task) throw new RpcError(-32001, 'Task inexistente');
+                if (body.params.historyLength !== undefined) {
+                    const limit = body.params.historyLength;
+                    if (!Number.isInteger(limit) || limit < 0) {
+                        throw new RpcError(-32602, 'historyLength deve ser um inteiro nao negativo');
+                    }
+                    task = { ...task, history: limit === 0 ? [] : task.history.slice(-limit) };
+                }
                 break;
             case 'SendMessage':
                 task = await sendMessage(body.params?.message, req.headers.traceparent);
@@ -168,4 +175,3 @@ createServer(async (req, res) => {
         reply(res, 200, { jsonrpc: '2.0', id, error: rpcError });
     }
 }).listen(port, '127.0.0.1');
-

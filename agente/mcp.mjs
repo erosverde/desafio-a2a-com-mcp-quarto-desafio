@@ -45,4 +45,3 @@ export async function descobrirReserva(traceparent) {
 export function chamarReserva(name, args, traceparent, retry) {
     return request('tools/call', { name, arguments: args, ...retry }, traceparent, { allowInputRequired: true });
 }
-
